@@ -61,6 +61,19 @@ def parse_args(argv=None):
         action='store_true',
         dest='verbose',
     )
+    parser.add_argument(
+        'input_file',
+        metavar='input',
+        type=str,
+        # nargs='+',
+        help='input file name.  ex, input.txt'
+    )
+    # parser.add_argument(
+    #     '--promotions',
+    #     help='Path of the promotions json file',
+    #     default='promotions.json',
+    #     dest='promotions',
+    # )
     return parser.parse_args(argv)
 
 def store_cash(num, typeOfCoin):
@@ -219,11 +232,11 @@ def main(argv=None):
 
     if not args.verbose:
         logger.disable()
-
+        
     # Load input.txt and store comands in a list
     commands = []
     try:
-        with open('input.txt', 'r') as infile:
+        with open(args.input_file, 'r') as infile:
             for line in infile:
                 commands.append(line.lstrip(">").split())
     except EnvironmentError:

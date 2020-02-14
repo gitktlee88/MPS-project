@@ -26,12 +26,12 @@ class TestParseArgs:
 
     def test_version(self, capsys):
         with pytest.raises(SystemExit):
-            main.parse_args(['--version'])
+            main.parse_args(['--version', 'input.txt'])
         stdout, _ = capsys.readouterr()
         assert 'cashMachine' in stdout
 
     def test_verbose(self):
-        args = main.parse_args(['--verbose'])
+        args = main.parse_args(['--verbose', 'input.txt'])
         assert args.verbose is True
 
 # content of test_expectation.py
@@ -46,7 +46,7 @@ def test_load_input(capsys, test_input, expected):
     print(stdout)
 
 def test_main(capsys):
-    main.main(['--verbose'])
+    main.main(['--verbose', 'input.txt'])
     stdout, _ = capsys.readouterr()
     expectd_op = '10 0.20£, 10 0.50£, 10 1£, 0 2£, 0 5£, 0 10£, 0 20£'
     expectd_op1 = '1 2£, 8 1£,'
