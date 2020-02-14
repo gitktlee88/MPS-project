@@ -1,0 +1,6 @@
+# Ignore some stuff
+__pycache__/
+*.pyc
+env
+**/*.pyc
+**/__pycache__
