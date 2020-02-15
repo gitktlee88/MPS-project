@@ -40,8 +40,20 @@ $ python -m cashMachine --verbose input.txt
 
 ## Tests
 This application benefits from `pytest` tests. To run the tests:
-```bash
+```
 $ pytest ./tests/test_main.py -v -s
+or,
+$ pytest ./tests/test_main.py
+```
+```
+================== test session starts ================================
+platform win32 -- Python 3.7.1, pytest-5.3.5, py-1.8.1, pluggy-0.13.1
+rootdir: D:\MPS
+collected 8 items
+
+tests\test_main.py ........                                      [100%]
+
+======================= 8 passed in 0.10s =============================
 ```
 
 ## Environment
