@@ -24,6 +24,14 @@ logging.basicConfig(stream = sys.stdout,
 
 logger = logging.getLogger()
 
+# from cashMachine import db_mysql_v2 as db
+# mydb = db.MySQLdb_connection()
+
+# from logbook import Logger, StreamHandler
+# StreamHandler(sys.stdout).push_application()
+# logger = Logger('CashMachine')
+
+
 # A dictionary for available coins and bank notes
 coins_notes = {
     ('0.20',): 0,   # 0.20
@@ -60,6 +68,12 @@ def parse_args(argv=None):
         # nargs='+',
         help='input file name.  ex, input.txt'
     )
+    # parser.add_argument(
+    #     '--promotions',
+    #     help='Path of the promotions json file',
+    #     default='promotions.json',
+    #     dest='promotions',
+    # )
     return parser.parse_args(argv)
 
 def store_cash(num, typeOfCoin):
@@ -145,6 +159,12 @@ def do_calc(notes, totalCoins):
                 if remain <= onesum:
                     do_func(t[0], t[1], remain, coins, sumOfcoins)
                     break
+                    # for i in range(1, t[1]+1):
+                    #     if remain == i*int(t[0]):
+                    #         coins.append((i, t[0]))
+                    #         coins_notes[(t[0],)] -= i
+                    #         sumOfcoins += remain
+                    #         break
                 elif onesum != 0:
                     coins.append((t[1], t[0]))
                     sumOfcoins += onesum
@@ -162,6 +182,12 @@ def do_calc(notes, totalCoins):
                 if remain <= fiftysum:
                     do_func(t[0], t[1], remain, coins, sumOfcoins)
                     break
+                    # for i in range(1, t[1]+1):
+                    #     if remain == i*float(t[0]):
+                    #         coins.append((i, t[0]))
+                    #         coins_notes[(t[0],)] -= i
+                    #         sumOfcoins += remain
+                    #         break
                 elif fiftysum != 0:
                     coins.append((t[1], t[0]))
                     sumOfcoins += fiftysum
@@ -178,6 +204,12 @@ def do_calc(notes, totalCoins):
                 if remain <= twentysum:
                     do_func(t[0], t[1], remain, coins, sumOfcoins)
                     break
+                    # for i in range(1, t[1]+1):
+                    #     if remain == i*float(t[0]):
+                    #         coins.append((i, t[0]))
+                    #         coins_notes[(t[0],)] -= i
+                    #         sumOfcoins += remain
+                    #         break
                 elif twentysum != 0:
                     coins.append((t[1], t[0]))
                     sumOfcoins += twentysum
