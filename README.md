@@ -1,9 +1,14 @@
 
 # cashMachine
-This repository contains a simple cashMachine application. When given a banknote will release coins for an equivalent value. The machine has the following coins available: 0.20£, 0.50£, 1£, 2£. The machine accepts the following banknotes: 5£, 10£, 20£.
+This repository contains a simple cashMachine application.
+A given banknote will release coins for an equivalent value.
+
+The machine has the following coins available: 0.20£, 0.50£, 1£, 2£. The machine accepts the following banknotes: 5£, 10£, 20£.
 There are 2 operations available:
+
   ● an operator can load more coins in the machine
   ● a customer can exchange a banknote
+
 You are given a text file which contains two types of instructions:
 
 
