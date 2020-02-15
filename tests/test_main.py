@@ -26,11 +26,10 @@ def test_logger_with_fixture(logger, caplog):
     logger.info('Hello guys!')
     assert 'Hello guys!' in caplog.text
 
-def test_log_quiet(capsys):
-    main.logger.enabled = False
+def test_log_test(caplog):
+    main.logger.enabled = True
     main.logger.warning('warning test')
-    stdout, _ = capsys.readouterr()
-    assert 'warning test' not in stdout
+    assert 'warning test' in caplog.text
 
 class TestParseArgs:
 
@@ -43,6 +42,12 @@ class TestParseArgs:
     def test_verbose(self):
         args = main.parse_args(['--verbose', 'input.txt'])
         assert args.verbose is True
+
+    # def test_log_quiet(self, caplog):
+    #     main.logger.enabled = True
+    #     main.logger.warning('warning test')
+    #     # stdout, _ = capsys.readouterr()
+    #     assert 'warning test' in caplog.text
 
 # content of test_expectation.py
 @pytest.mark.parametrize("test_input,expected", [
