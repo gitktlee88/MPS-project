@@ -141,7 +141,8 @@ def do_calc(notes, totalCoins):
                 coins.append((notes//2, t[0]))
                 coins_notes[(t[0],)] -= notes//2
                 sumOfCoins += int(t[0])*(notes//2)
-                break
+                if sumOfCoins == notes:
+                    break
             elif twosum != 0:
                 coins.append((t[1], t[0]))
                 sumOfCoins += twosum
@@ -232,7 +233,7 @@ def main(argv=None):
 
     if not args.verbose:
         logger.disable()
-        
+
     # Load input.txt and store comands in a list
     commands = []
     try:
