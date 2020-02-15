@@ -1,6 +1,13 @@
 import time
 import pytest
+import logging
 import cashMachine.__main__ as main
+
+@pytest.fixture()
+def logger():
+    logger = logging.getLogger('Some.Logger')
+    logger.setLevel(logging.INFO)
+    return logger
 
 @pytest.fixture
 def exchange_text():
@@ -9,18 +16,21 @@ def exchange_text():
         ['EXCHANGE', 10]
     ]
 
-def test_log(capsys):
-    main.logger.enabled = True
-    main.logger.warning('logger-test')
+def test_exchange_to_coins(exchange_text, capsys):
+    print(exchange_text[0][1])
+    main.exchange_to_coins(exchange_text[0][1])
     stdout, _ = capsys.readouterr()
-    assert 'hello-test' not in stdout
+    assert '0 0.20£, 0 0.50£, 0 1£, 0 2£, 0 5£, 0 10£, 0 20£' in stdout
+
+def test_logger_with_fixture(logger, caplog):
+    logger.info('Hello guys!')
+    assert 'Hello guys!' in caplog.text
 
 def test_log_quiet(capsys):
     main.logger.enabled = False
     main.logger.warning('warning test')
     stdout, _ = capsys.readouterr()
-    assert not len(stdout)
-
+    assert 'warning test' not in stdout
 
 class TestParseArgs:
 
