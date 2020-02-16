@@ -1,7 +1,7 @@
 import time
 import pytest
 import logging
-import cashMachine.__main__ as main
+import cash_machine.__main__ as main
 
 @pytest.fixture()
 def logger():
@@ -37,7 +37,7 @@ class TestParseArgs:
         with pytest.raises(SystemExit):
             main.parse_args(['--version', 'input.txt'])
         stdout, _ = capsys.readouterr()
-        assert 'cashMachine' in stdout
+        assert 'cash_machine' in stdout
 
     def test_verbose(self):
         args = main.parse_args(['--verbose', 'input.txt'])

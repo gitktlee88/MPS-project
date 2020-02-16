@@ -1,6 +1,6 @@
 
-# cashMachine
-This repository contains a simple cashMachine application.
+# cash_machine
+This repository contains a simple cash_machine application.
 A given banknote will release coins for an equivalent value.
 
 The machine has the following coins available: 0.20£, 0.50£, 1£, 2£. The machine accepts the following banknotes: 5£, 10£, 20£.
@@ -17,8 +17,8 @@ Check out the repo and navigate to `MPS-project/`.
 
 Execute as follows to show usage:
 ```
-python -m cashMachine -h
-usage: cashMachine [-h] [-v] [--verbose]
+python -m cash_machine -h
+usage: cash_machine [-h] [-v] [--verbose]
 
 positional arguments:
   input          input file name. ex, input.txt
@@ -31,10 +31,10 @@ optional arguments:
 
 ## Examples
 ```
-$ python -m cashMachine input.txt
+$ python -m cash_machine input.txt
 ```
 ```
-$ python -m cashMachine --verbose input.txt
+$ python -m cash_machine --verbose input.txt
 ```
 
 

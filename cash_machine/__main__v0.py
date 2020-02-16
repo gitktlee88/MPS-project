@@ -1,4 +1,4 @@
-"""cashMachine.
+"""cash_machine.
 
 A cash machine that, when given a banknote will release coins for an equivalent value.
 The machine has the following coins available: 0.20£, 0.50£, 1£, 2£.
@@ -24,7 +24,7 @@ logging.basicConfig(stream = sys.stdout,
 
 logger = logging.getLogger()
 
-# from cashMachine import db_mysql_v2 as db
+# from cash_machine import db_mysql_v2 as db
 # mydb = db.MySQLdb_connection()
 
 # from logbook import Logger, StreamHandler
@@ -47,7 +47,7 @@ def parse_args(argv=None):
     """Parse command line arguments.
     :param list argv: Args to parse.
     """
-    parser = argparse.ArgumentParser(prog='cashMachine')
+    parser = argparse.ArgumentParser(prog='cash_machine')
     parser.add_argument(
         '-v',
         '--version',

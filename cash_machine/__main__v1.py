@@ -1,4 +1,4 @@
-"""cashMachine.
+"""cash_machine.
 
 A cash machine that, when given a banknote will release coins for an equivalent value.
 The machine has the following coins available: 0.20£, 0.50£, 1£, 2£.
@@ -39,7 +39,7 @@ def parse_args(argv=None):
     """Parse command line arguments.
     :param list argv: Args to parse.
     """
-    parser = argparse.ArgumentParser(prog='cashMachine')
+    parser = argparse.ArgumentParser(prog='cash_machine')
     parser.add_argument(
         '-v',
         '--version',
