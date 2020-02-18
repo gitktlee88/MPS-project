@@ -143,23 +143,7 @@ def do_calc(notes, total_coins):
                 coins.append((t[1], t[0]))
                 sum_of_coins += poundsum
                 coins_notes[(t[0],)] -= t[1]
-        # elif i == 1:   # 1£
-        #     onesum = t[1]*int(t[0])
-        #     if notes <= onesum and sum_of_coins == 0:
-        #         coins.append((notes, t[0]))
-        #         coins_notes[(t[0],)] -= notes
-        #         sum_of_coins += int(t[0])*(notes)
-        #         break
-        #     elif onesum != 0:
-        #         remains = notes - sum_of_coins
-        #         if remains <= onesum:
-        #             do_func(t[0], t[1], remains, coins, sum_of_coins)
-        #             break
-        #         elif onesum != 0:
-        #             coins.append((t[1], t[0]))
-        #             sum_of_coins += onesum
-        #             coins_notes[(t[0],)] -= t[1]
-
+                        
         elif i >= 2:   # 0.50£  or  0.20£
             pennysum = t[1]*float(t[0])
             coins_required = 0
