@@ -121,51 +121,35 @@ def do_calc(notes, total_coins):
     # Iterate coins_notes(dictionary) in reversed order like
     # {('2',): 0, ('1',): 0, ('0.50',): 0, ('0.20',): 0}
     for i, t in enumerate(money[-4::-1]):   # t = (key, val)
-        if i <= 1:   # 2£  or 1£
-            poundsum = t[1]*int(t[0])
-            coins_required = 0
+        if t[0].isdigit():   # 2£  or 1£ ??
+            coinsum = t[1]*int(t[0])
+            coinval = int(t[0])
             if int(t[0]) == 2:
                 coins_required = notes//2
-            elif int(t[0]) == 1:
+            else:
                 coins_required = notes
-
-            if notes <= poundsum and sum_of_coins == 0:
-                coins.append((coins_required, t[0]))
-                coins_notes[(t[0],)] -= coins_required
-                sum_of_coins += int(t[0])*(coins_required)
-                if sum_of_coins == notes:
-                    break
-            elif poundsum != 0:
-                remains = notes - sum_of_coins
-                if remains <= poundsum:
-                    do_func(t[0], t[1], remains, coins, sum_of_coins)
-                    break
-                coins.append((t[1], t[0]))
-                sum_of_coins += poundsum
-                coins_notes[(t[0],)] -= t[1]
-                        
-        elif i >= 2:   # 0.50£  or  0.20£
-            pennysum = t[1]*float(t[0])
-            coins_required = 0
+        else:   # 0.50£  or 0.20£
+            coinsum = t[1]*float(t[0])
+            coinval = float(t[0])
             if float(t[0]) == 0.50:
                 coins_required = notes*2
-            elif float(t[0]) == 0.20:
+            else:
                 coins_required = notes*5
 
-            if notes <= pennysum and sum_of_coins == 0:
-                coins.append((coins_required, t[0]))
-                coins_notes[(t[0],)] -= coins_required
-                sum_of_coins += float(t[0])*coins_required
+        if notes <= coinsum and sum_of_coins == 0:
+            coins.append((coins_required, t[0]))
+            coins_notes[(t[0],)] -= coins_required
+            sum_of_coins += coinval*(coins_required)
+            if sum_of_coins == notes:
                 break
-            elif pennysum != 0:
-                remains = notes - sum_of_coins
-                if remains <= pennysum:
-                    do_func(t[0], t[1], remains, coins, sum_of_coins)
-                    break
-
-                coins.append((t[1], t[0]))
-                sum_of_coins += pennysum
-                coins_notes[(t[0],)] -= t[1]
+        elif coinsum != 0:
+            remains = notes - sum_of_coins
+            if remains <= coinsum:
+                do_func(t[0], t[1], remains, coins, sum_of_coins)
+                break
+            coins.append((t[1], t[0]))
+            sum_of_coins += coinsum
+            coins_notes[(t[0],)] -= t[1]
 
     if not len(coins):
         print("CANNOT EXCHANGE")
