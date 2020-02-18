@@ -2,7 +2,7 @@ import time
 import pytest
 import logging
 import cash_machine.__main__ as main
-
+# import pdb; pdb.set_trace()
 @pytest.fixture()
 def logger():
     logger = logging.getLogger('Some.Logger')

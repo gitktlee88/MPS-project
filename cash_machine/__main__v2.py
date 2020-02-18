@@ -150,28 +150,38 @@ def do_calc(notes, total_coins):
                     sum_of_coins += onesum
                     coins_notes[(t[0],)] -= t[1]
 
-        elif i >= 2:   # 0.50£  or  0.20£
-            pennysum = t[1]*float(t[0])
-            coins_required = 0
-            if float(t[0]) == 0.50:
-                coins_required = notes*2
-            elif float(t[0]) == 0.20:
-                coins_required = notes*5
-
-            if notes <= pennysum and sum_of_coins == 0:
-                coins.append((coins_required, t[0]))
-                coins_notes[(t[0],)] -= coins_required
-                sum_of_coins += float(t[0])*coins_required
+        elif i == 2:   # 0.50£
+            fiftysum = t[1]*float(t[0])
+            if notes <= fiftysum and sum_of_coins == 0:
+                coins.append((notes*2, t[0]))
+                coins_notes[(t[0],)] -= notes*2
+                sum_of_coins += float(t[0])*notes*2
                 break
-            elif pennysum != 0:
+            elif fiftysum != 0:
                 remains = notes - sum_of_coins
-                if remains <= pennysum:
+                if remains <= fiftysum:
                     do_func(t[0], t[1], remains, coins, sum_of_coins)
                     break
-
-                coins.append((t[1], t[0]))
-                sum_of_coins += pennysum
-                coins_notes[(t[0],)] -= t[1]
+                elif fiftysum != 0:
+                    coins.append((t[1], t[0]))
+                    sum_of_coins += fiftysum
+                    coins_notes[(t[0],)] -= t[1]
+        else:   # 0.20£
+            twentysum = t[1]*float(t[0])
+            if notes <= twentysum and sum_of_coins == 0:
+                coins.append((notes*5, t[0]))
+                coins_notes[(t[0],)] -= notes*5
+                sum_of_coins += float(t[0])*notes*5
+                break
+            elif twentysum != 0:
+                remains = notes - sum_of_coins
+                if remains <= twentysum:
+                    do_func(t[0], t[1], remains, coins, sum_of_coins)
+                    break
+                elif twentysum != 0:
+                    coins.append((t[1], t[0]))
+                    sum_of_coins += twentysum
+                    coins_notes[(t[0],)] -= t[1]
 
     if not len(coins):
         print("CANNOT EXCHANGE")
