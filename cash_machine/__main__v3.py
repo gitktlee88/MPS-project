@@ -149,16 +149,11 @@ def do_calc(notes, total_coins):
         elif coinsum != 0:
             remains = notes - sum_of_coins
             if remains <= coinsum:
-                for i in range(1, t[1] + 1):
-                    if remains == i * coinval:
-                        coins.append((i, t[0]))
-                        coins_notes[(t[0],)] -= i
-                        sum_of_coins += remains
-                        break
-            else:
-                coins.append((t[1], t[0]))
-                sum_of_coins += coinsum
-                coins_notes[(t[0],)] -= t[1]
+                do_func(t[0], t[1], remains, coins, sum_of_coins)
+                break
+            coins.append((t[1], t[0]))
+            sum_of_coins += coinsum
+            coins_notes[(t[0],)] -= t[1]
 
     if not len(coins):
         print("CANNOT EXCHANGE")
@@ -168,6 +163,16 @@ def do_calc(notes, total_coins):
         for v in coins:
             result += str(v[0]) + ' ' + v[1] + '£, '
         print(result)
+
+
+def do_func(type_of_coin, num_of_coins, remains, coins, sum_of_coins):
+    for i in range(1, num_of_coins + 1):
+        if remains == i * float(type_of_coin):
+            coins.append((i, type_of_coin))
+            coins_notes[(type_of_coin,)] -= i
+            sum_of_coins += remains
+            break
+    return
 
 
 def main(argv=None):
