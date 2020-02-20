@@ -1,4 +1,5 @@
 # content of test_sysexit.py
+from cash_machine.db_mysql_v2 import MySQLdb_connection
 import pytest
 
 
