@@ -147,6 +147,7 @@ def do_calc(notes, total_coins):
             if sum_of_coins == notes:
                 break
         elif coinsum != 0:
+            # print(notes, sum_of_coins)
             remains = notes - sum_of_coins
             if remains <= coinsum:
                 for i in range(1, t[1] + 1):
