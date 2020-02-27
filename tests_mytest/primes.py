@@ -1,5 +1,14 @@
-# A prime number is a whole number greater than 1 whose only factors are 1 and itself.
-# A factor is a whole number that can be divided evenly into another number.
+"""
+A prime number is a whole number greater than 1 whose only factors are 1 and itself.
+
+If a number n is not a prime, it can be factored into two factors a and b:    n = a * b
+
+If both a and b were greater than the square root of n, then a * b would be greater than n.
+
+So at least one of those factors must be less than or equal to the square root of n,
+and if we can't find any factors less than or equal to the square root, n must be prime.
+"""
+
 import math
 
 
