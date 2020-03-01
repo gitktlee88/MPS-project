@@ -1,16 +1,17 @@
-class ItemNotFoundException(Exception):
+
+class ItemNotFound(Exception):
     pass
 
 
-class InvalidQuantityException(Exception):
+class NoSpaces(Exception):
     pass
 
 
-class NoSpaceException(Exception):
+class InvalidQuantity(Exception):
     pass
 
 
-class Inventory:
+class Invent:
     def __init__(self, limit=100):
         self.limit = limit
         self.total_items = 0
@@ -18,15 +19,10 @@ class Inventory:
 
     def add_new_stock(self, name, price, quantity):
         if quantity <= 0:
-            raise InvalidQuantityException(
-                'Cannot add a quantity of {}. All new stocks must have at least 1 item'
-                .format(quantity))
+            raise InvalidQuantity('Cannot add {} quantity'.format(quantity))
 
-        if self.total_items + quantity > self.limit:
-            remaining_space = self.limit - self.total_items
-            raise NoSpaceException(
-                'Cannot add these {} items. Only {} more items can be stored'
-                .format(quantity, remaining_space))
+        if self.limit < self.total_items + quantity:
+            raise NoSpaces('No Spaces are available')
 
         diff_quantity = 0
 
@@ -43,14 +39,16 @@ class Inventory:
 
     def remove_stock(self, name, quantity):
         if quantity <= 0:
-            raise InvalidQuantityException(
-                'Cannot remove a quantity of {}. Must remove at least 1 item'.format(quantity))
+            raise InvalidQuantity('Cannot remove 0 quantity')
+
         if name not in self.stocks:
-            raise ItemNotFoundException(
-                'Could not find {} in our stocks. Cannot remove non-existing stock'.format(name))
+            raise ItemNotFound(
+                "Could not find '{}' in our stocks.".format(name))
+
         if self.stocks[name]['quantity'] - quantity <= 0:
-            raise InvalidQuantityException(
+            raise InvalidQuantity(
                 'Cannot remove these {} items. Only {} items are in stock'.format(
                     quantity, self.stocks[name]['quantity']))
+
         self.stocks[name]['quantity'] -= quantity
         self.total_items -= quantity
